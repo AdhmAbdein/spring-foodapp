@@ -5,7 +5,7 @@ WORKDIR /app
 COPY mvnw .
 COPY .mvn .mvn
 COPY pom.xml .
-COPY ./src ./src
+COPY /FoodieExpress/src ./src
 
 RUN mvn clean package -DskipTests
 RUN ls -l target/
