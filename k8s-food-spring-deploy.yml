@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: food-spring-deploy
+  labels:
+    food: spring
+spec:
+  replicas: 1
+  selector:
+    matchLabels: 
+      food: spring
+  template:
+    metadata:
+      name: pod-spring-food
+      labels:  
+        food: spring
+    spec: 
+      containers:
+        - name: cont-spring-food
+          image: adhmabdein/springfood
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:mysql://foodsvc:3306/SbProject"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "root"
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: food-mysql-secret
+                  key: MYSQL_PASSWORD
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"         

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: food-mysql-pvc
+spec:
+  volumeName: food-mysql-pv
+  accessModes: 
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 2Gi
+

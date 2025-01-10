@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: food-mysql-deploy
+  labels:
+    food: mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      food: mysql
+  template:
+    metadata:
+      name: pod-mysql-food
+      labels:
+        food: mysql
+    spec:
+      containers:
+        - name: cont-mysql-food
+          image: mysql:8.0
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: food-mysql-secret 
+                  key:  MYSQL_PASSWORD 
+            - name: MYSQL_DATABASE
+              valueFrom:
+                configmapKeyRef:
+                  name: food-mysql-configmap
+                  key: MYSQL_DATABASE        
+          volumeMounts:
+            - name: food-vol
+              path: /data
+      volumes:
+        - name: food-vol
+          persistentVolumeClaim:
+            claimName: food-mysql-pvc
+
+                

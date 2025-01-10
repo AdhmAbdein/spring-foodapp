@@ -1,0 +1,18 @@
+apiVersion: autoscaling/v2
+kind: HorizontaPodAutoscaler
+metadata:
+  name: food-spring-hpa
+spec:
+  scalTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: food-spring-deploy
+  minReplicas: 1
+  maxReplicas: 3
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 50    
