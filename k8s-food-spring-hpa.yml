@@ -1,9 +1,9 @@
 apiVersion: autoscaling/v2
-kind: HorizontaPodAutoscaler
+kind: HorizontalPodAutoscaler
 metadata:
   name: food-spring-hpa
 spec:
-  scalTargetRef:
+  scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
     name: food-spring-deploy
