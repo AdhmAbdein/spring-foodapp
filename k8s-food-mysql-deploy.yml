@@ -33,7 +33,7 @@ spec:
                   key: MYSQL_DATABASE        
           volumeMounts:
             - name: food-vol
-              mountpath: /data
+              mountPath: /data
       volumes:
         - name: food-vol
           persistentVolumeClaim:
