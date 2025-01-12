@@ -8,9 +8,9 @@ COPY /FoodieExpress/pom.xml .
 COPY /FoodieExpress/src ./src
 
 RUN mvn clean package -DskipTests
-RUN ls -l target/
+#RUN ls -l target/
 
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "target/Online-Food-Delivery-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "./Online-Food-Delivery-0.0.1-SNAPSHOT.jar"]
 
