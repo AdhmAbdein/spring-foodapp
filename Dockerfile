@@ -14,4 +14,4 @@ RUN chmod +x mvnw
 
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "target/Online-Food-Delivery-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "FoodieExpress/target/Online-Food-Delivery-0.0.1-SNAPSHOT.jar"]
